@@ -7,13 +7,13 @@ public class RandomColor {
 
     public RandomColor() {
         this.random = new Random();
-        this.color = generateRandomColor();
+        this.color = generatePastelColor();
     }
 
-    private Color generateRandomColor() {
-        int red = random.nextInt(256);
-        int green = random.nextInt(256);
-        int blue = random.nextInt(256);
+    private Color generatePastelColor() {
+        int red = random.nextInt(128) + 127;
+        int green = random.nextInt(128) + 127;
+        int blue = random.nextInt(128) + 127;
 
         return new Color(red, green, blue);
     }

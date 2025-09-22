@@ -1,5 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
+import toys.Apple;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +17,16 @@ public class DrawPanel extends JPanel {
             BackAutomats automat = new BackAutomats(x, 280, 90, 120, cl.getColor(), cl2.getColor());
             automats.add(automat);
         }
+
+        Timer timer = new Timer(500, e -> {
+            for (BackAutomats automat : automats) {
+                automat.updateColor();
+            }
+            repaint();
+        });
+        timer.start();
+
+
     }
 
     @Override
@@ -31,5 +40,8 @@ public class DrawPanel extends JPanel {
         for (BackAutomats automat : automats) {
             automat.draw(g);
         }
+        Apple apple = new Apple(200, 200, 30);
+        apple.draw(g);
+
     }
 }

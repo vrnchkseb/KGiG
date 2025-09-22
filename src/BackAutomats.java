@@ -1,51 +1,48 @@
 import java.awt.*;
+import java.util.Random;
 
 public class BackAutomats {
     private int x, y, width, height;
     private Color first, second;
+    private Color changingColor;
+    private Random rand = new Random();
 
     public BackAutomats(int x, int y, int height, int width, Color first, Color second) {
         this.x = x;
         this.y = y;
-        this.first = first;
         this.height = height;
         this.width = width;
+        this.first = first;
         this.second = second;
+        changingColor = generateRandomColor();
+    }
+
+    private Color generateRandomColor() {
+        return new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+    }
+    public void updateColor() {
+        changingColor = generateRandomColor();
     }
 
     public void draw(Graphics2D g){
-        Graphics2D rect = (Graphics2D) g;
-        rect.setColor(first);
-        rect.fillRect(x,y,width,height);
+        g.setColor(first);
+        g.fillRect(x,y,width,height);
+        g.setColor(Color.BLACK);
+        g.drawRect(x,y,width,height);
 
-        Graphics2D g2 = (Graphics2D) g;
-        int[] xPoints = {x, x+5, x+width-5, x+width};
-        int[] yPoints = {y, y-15, y-15, y};
-        Polygon trapezoid = new Polygon(xPoints, yPoints, 4);
-        g2.setColor(second);
-        g2.fill(trapezoid);
+        TrapezoidDrawer trapezoid = new TrapezoidDrawer(x, y, width,width - 10, 15, second, false);
+        trapezoid.draw(g);
 
-        g2.setColor(first);
-        rect.fillRect(x+5,y-15-height, width-10, height);//левый нижний
+        g.setColor(first);
+        g.fillRect(x+5,y-15-height, width-10, height); // левый нижний
 
-        g2.setColor(Color.black);
-        rect.fillRect(x+10,y-5-height, width-20, height-15);
+        g.setColor(changingColor);
+        g.fillRect(x+10,y-5-height, width-20, height-15);
 
-        int[] xPoints2 = {x+5, x-5, x+5+width, x+width-5};
-        int[] yPoints2 = {y-15-height, y-25-height, y-25-height, y-15-height};
-        Polygon trapezoid2 = new Polygon(xPoints2, yPoints2, 4);
-        g2.setColor(second);
-        g2.fill(trapezoid2);
+        TrapezoidDrawer trapezoid2 = new TrapezoidDrawer(x+5, y-25-height, width - 10, width + 10, 15, second, true);
+        trapezoid2.draw(g);
 
-        int[] xPoints3 = {x-5, x+5, x+width-5, x+width+5};
-        int[] yPoints3 = {y-25-height, y-35-height, y-35-height, y-25-height};
-        Polygon trapezoid3 = new Polygon(xPoints3, yPoints3, 4);
-        g2.setColor(first);
-        g2.fill(trapezoid3);
-
-    }
-
-    public int getWidth(){
-        return width;
+        TrapezoidDrawer trapezoid3 = new TrapezoidDrawer(x-5, y-25-height, width + 10, width, 15, first, false);
+        trapezoid3.draw(g);
     }
 }
