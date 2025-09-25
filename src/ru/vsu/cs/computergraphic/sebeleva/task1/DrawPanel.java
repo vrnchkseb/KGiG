@@ -1,7 +1,7 @@
 package ru.vsu.cs.computergraphic.sebeleva.task1;
-
-import ru.vsu.cs.computergraphic.sebeleva.task1.toys.Bear;
-import ru.vsu.cs.computergraphic.sebeleva.task1.toys.Pig;
+import ru.vsu.cs.computergraphic.sebeleva.task1.assist.*;
+import ru.vsu.cs.computergraphic.sebeleva.task1.automats.*;
+import ru.vsu.cs.computergraphic.sebeleva.task1.toys.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,7 @@ public class DrawPanel extends JPanel {
     //private Apple apple = new Apple(200, 200, 30);
     //private Сaterpillar caterpillar = new Сaterpillar(400, 100,30);
     //private Bear bear = new Bear(100, 100, 50);
-    //private Pig pig = new Pig(200,200, 70);
+    private Pig pig = new Pig(200,200, 70);
 
     public DrawPanel() {
         for (int x = -50; x <= 900; x += 150) {
@@ -28,9 +28,12 @@ public class DrawPanel extends JPanel {
         for (int x = -300; x <= 2000; x += 500){
             RandomColor col = new RandomColor();
             RandomColor col2 = new RandomColor();
-            FrontAutomats automats = new FrontAutomats(x,570, 600, 400, col.getPastelColor(), col2.getPastelColor());
+            FrontAutomats automats = new FrontAutomats(x,600, 600, 400, col.getPastelColor(), col2.getPastelColor());
             frontAutomats.add(automats);
         }
+
+        Timer timer = new Timer(16, e -> repaint());
+        timer.start();
     }
 
     @Override
@@ -44,13 +47,14 @@ public class DrawPanel extends JPanel {
         g.fillRect(0, 350, 800, 500);
 
         for (BackAutomats automat : backAutomats) {
+            automat.update();
             automat.draw(g);
         }
         for (FrontAutomats automat : frontAutomats) {
             automat.draw(g);
         }
 
-        //pig.draw(g);
+        pig.draw(g);
 
         //bear.draw(g);
         //apple.draw(g);

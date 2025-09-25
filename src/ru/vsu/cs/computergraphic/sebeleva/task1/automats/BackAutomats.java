@@ -1,4 +1,7 @@
-package ru.vsu.cs.computergraphic.sebeleva.task1;
+package ru.vsu.cs.computergraphic.sebeleva.task1.automats;
+
+import ru.vsu.cs.computergraphic.sebeleva.task1.assist.RandomColor;
+import ru.vsu.cs.computergraphic.sebeleva.task1.assist.TrapezoidDrawer;
 
 import java.awt.*;
 
@@ -7,6 +10,8 @@ public class BackAutomats {
     private Color color;
     private Color changingColor;
     private RandomColor colors = new RandomColor();
+    private long lastChange = 0;
+    private long changeDelay = 300;
 
     public BackAutomats(int x, int y, int height, int width, Color color) {
         this.x = x;
@@ -40,4 +45,13 @@ public class BackAutomats {
 
         TrapezoidDrawer.draw(g, x-5, y-25-height, width + 10, width, 15, color, false);
     }
+
+    public void update() {
+        long now = System.currentTimeMillis();
+        if (now - lastChange > changeDelay) {
+            this.changingColor = colors.updateColor();
+            lastChange = now;
+        }
+    }
+
 }

@@ -1,5 +1,5 @@
 package ru.vsu.cs.computergraphic.sebeleva.task1.toys;
-import ru.vsu.cs.computergraphic.sebeleva.task1.RandomColor;
+import ru.vsu.cs.computergraphic.sebeleva.task1.assist.RandomColor;
 
 import java.awt.*;
 

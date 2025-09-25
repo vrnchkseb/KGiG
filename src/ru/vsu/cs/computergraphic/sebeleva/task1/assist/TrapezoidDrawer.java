@@ -1,4 +1,4 @@
-package ru.vsu.cs.computergraphic.sebeleva.task1;
+package ru.vsu.cs.computergraphic.sebeleva.task1.assist;
 
 import java.awt.*;
 

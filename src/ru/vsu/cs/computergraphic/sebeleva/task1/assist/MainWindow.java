@@ -1,4 +1,6 @@
-package ru.vsu.cs.computergraphic.sebeleva.task1;
+package ru.vsu.cs.computergraphic.sebeleva.task1.assist;
+
+import ru.vsu.cs.computergraphic.sebeleva.task1.DrawPanel;
 
 import javax.swing.*;
 import java.awt.*;
