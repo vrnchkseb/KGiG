@@ -1,4 +1,4 @@
-package toys;
+package ru.vsu.cs.computergraphic.sebeleva.task1.toys;
 import java.awt.*;
 
 public class Apple {
@@ -11,6 +11,7 @@ public class Apple {
     }
 
     public void draw(Graphics2D g) {
+
         g.setColor(Color.RED);
         g.fillOval(x - r, y - r, 2 * r, 2 * r);
         g.setColor(Color.BLACK);

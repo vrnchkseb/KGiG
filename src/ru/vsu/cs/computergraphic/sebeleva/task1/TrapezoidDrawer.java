@@ -1,3 +1,5 @@
+package ru.vsu.cs.computergraphic.sebeleva.task1;
+
 import java.awt.*;
 
 public class TrapezoidDrawer {
@@ -20,6 +22,10 @@ public class TrapezoidDrawer {
     }
 
     public void draw(Graphics2D g) {
+        draw(g, x, y, bottomWidth, topWidth, height, color, inverted);
+    }
+
+    public static void draw(Graphics2D g, int x, int y, int bottomWidth, int topWidth, int height, Color color, boolean inverted) {
         int offset = (bottomWidth - topWidth) / 2;
         int[] xPoints, yPoints;
         if (!inverted) {

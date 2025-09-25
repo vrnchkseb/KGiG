@@ -1,3 +1,5 @@
+package ru.vsu.cs.computergraphic.sebeleva.task1;
+
 import javax.swing.*;
 
 public class Main {
